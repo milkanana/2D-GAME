@@ -10,6 +10,7 @@ public class Stats : MonoBehaviour {
 
 	public string testobjecftttttt;
 	//test 2??????
+	//test33333
 
 	// Use this for initialization
 	void Start () {
