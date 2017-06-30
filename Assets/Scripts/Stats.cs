@@ -8,6 +8,9 @@ public class Stats : MonoBehaviour {
 	public float maxforce;
 	public int numUnits;
 
+	public string testobjecftttttt;
+	//test 2??????
+
 	// Use this for initialization
 	void Start () {
 		
