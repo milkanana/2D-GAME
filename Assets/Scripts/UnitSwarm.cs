@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UnitSwarm : MonoBehaviour {
 
+	public GameObject gameManager;
 	public GameObject [] unitsList;
 	public List<GameObject> prefabs;
 	public int numUnits;
@@ -48,6 +49,7 @@ public class UnitSwarm : MonoBehaviour {
 
 	void Start () {
 
+		gameManager = GameObject.Find ("GameManager");
 
 		rigid = this.GetComponent<Rigidbody2D> ();
 
@@ -60,9 +62,10 @@ public class UnitSwarm : MonoBehaviour {
 				Random.Range (-range.z, range.z));
 
 			unitsList [i] = Instantiate (prefabs[indexnum], this.transform.position + unitPos, Quaternion.identity) as GameObject;
-			print (i);
 			unitsList [i].GetComponent<Unit> ().manager = this.gameObject;
 			unitsList [i].transform.SetParent (this.transform);
+			gameManager.GetComponent<GameManager> ().unitList.Add (unitsList[i]);
+
 		}
 	}
 
@@ -73,6 +76,9 @@ public class UnitSwarm : MonoBehaviour {
 
 		if (this.transform.position.y < manager.gameObject.GetComponent<SwarmManager>().transform.position.y + 6) {
 			manager.gameObject.GetComponent<SwarmManager> ().swarmList.Remove (this.gameObject);
+			foreach (GameObject unit in unitsList) {
+				gameManager.GetComponent<GameManager> ().unitList.Remove (unit);
+			}
 			Destroy (this.gameObject);
 		}
 

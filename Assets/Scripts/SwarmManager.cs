@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SwarmManager : MonoBehaviour {
+
+	public GameObject manager;
 	public Vector3 range = new Vector3 (5, 5, 5);
 	public List<GameObject> swarmList;
 	public GameObject playerP;
@@ -10,10 +12,6 @@ public class SwarmManager : MonoBehaviour {
 
 	public int numUnits;
 	public float rangeOffSet;
-
-	public float interval;
-	public float xPos;
-	public float ySpeed;
 
 	[Range(0,200)] //range slider yo and its range thingy yea i'm learning things o0o .:+*!
 	public int neighbourRange = 50; //anyone outside this range is not. your neighbour ~

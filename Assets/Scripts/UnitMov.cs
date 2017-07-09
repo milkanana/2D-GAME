@@ -15,13 +15,15 @@ public class UnitMov : MonoBehaviour {
 	void applyForce(Vector2 f,Unit script){
 		Vector3 force = new Vector3 (f.x, f.y, 0);
 
-		if(force.magnitude > script.manager.GetComponent<UnitSwarm>().maxforce) { //constrains...
+		if(force.magnitude > script.manager.GetComponent<UnitSwarm>().maxforce) { //constraints...
 
 			force = force.normalized;
 			force *= script.manager.GetComponent<UnitSwarm>().maxforce;
 		}
 
-		script.rigid.AddForce (force);
+		Vector2 distanceVector = GetComponent<Unit> ().gameManager.GetComponent<GameManager>().CheckDistance (this.gameObject);
+		script.rigid.AddForce ((Vector2)force + distanceVector * GetComponent<Unit> ().gameManager.GetComponent<GameManager>().pushForce );
+		
 
 		if(script.rigid.velocity.magnitude > script.manager.GetComponent<UnitSwarm>().maxvelocity/*rigid.velocity.x.magnitude > manager.GetComponent<UnitSwarm>().maxvelocityX*/) {
 			script.rigid.velocity = script.rigid.velocity.normalized;
