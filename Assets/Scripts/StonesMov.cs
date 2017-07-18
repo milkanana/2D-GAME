@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class StonesMov : MonoBehaviour {
 
-	public float speed;
+	public float yspeed;
+	public float xspeed;
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +14,7 @@ public class StonesMov : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		transform.position = new Vector2 (transform.position.x,transform.position.y + speed);
+		transform.position = new Vector2 (transform.position.x+xspeed,transform.position.y + yspeed);
 		
 	}
 }
